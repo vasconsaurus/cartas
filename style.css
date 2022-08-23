@@ -9,6 +9,11 @@ body {
   padding: 5%;
 }
 
+.cards_container {
+  display: flex;
+  gap: 5%;
+}
+
 .card {
   width: 25vw;
   height: 50vh;

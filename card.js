@@ -8,24 +8,26 @@ const cardContent = {
 }
 
 function Card({cardName, cardText, className=''}) {
+  const [flip, setFlip] = React.useState(false);
+
+  function handleClick() {
+    () => setFlip(!flip);
+  }
+
   return (
-    <div className={`card ${className}`} onClick={handleClick}>
+    <div className={className} onClick={handleClick}>
       <h3>{cardName}</h3>
       <p>{cardText}</p>
     </div>
   );
 }
 
-function handleClick() {
-  console.log('clicked!')
-}
-
 const element = (
   <div className="cards_container">
     {Object.entries(cardContent).map(itemArr => (
-    <div className="card_pair">
+    <div className={`card  ${flip ? "flip" : ""}`}>
+      <Card className={`front`} cardName={'click me'} key={`${itemArr[0]}Front`}></Card>
       <Card className={`back`} cardName={itemArr[0]} cardText={Object.values(itemArr[1])} key={itemArr[0]}></Card>
-      <Card className={`front`} cardName={'click me'} key={`front ${itemArr[0]}`}></Card>
     </div>
     ))}
   </div>

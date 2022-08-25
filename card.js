@@ -7,9 +7,9 @@ const cardContent = {
   estrela: "Não é de se admirar que a estrela represente em nossas vidas sinal de luz e renovação. Sem essa âncora é possível agora caminhar em direção a uma nova vida."
 }
 
-function Card({cardName, cardText}) {
+function Card({cardName, cardText, className=''}) {
   return (
-    <div className="card" onClick={handleClick}>
+    <div className={`card ${className}`} onClick={handleClick}>
       <h3>{cardName}</h3>
       <p>{cardText}</p>
     </div>
@@ -23,7 +23,10 @@ function handleClick() {
 const element = (
   <div className="cards_container">
     {Object.entries(cardContent).map(itemArr => (
-    <Card cardName={itemArr[0]} cardText={Object.values(itemArr[1])} key={itemArr[0]}></Card>
+    <div className="card_pair">
+      <Card className={`back`} cardName={itemArr[0]} cardText={Object.values(itemArr[1])} key={itemArr[0]}></Card>
+      <Card className={`front`} cardName={'click me'} key={`front ${itemArr[0]}`}></Card>
+    </div>
     ))}
   </div>
   )
